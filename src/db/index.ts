@@ -5,7 +5,7 @@ dotenv.config();
 /**
  * Represents a product with specific attributes.
  */
-export type Product = {
+export type ApiProductType = {
   id: string; // Unique identifier for the product
   imageId: string; // Identifier for the product's image
   name: string; // Name of the product
@@ -17,7 +17,7 @@ export type Product = {
 /**
  * Database index for storing and querying products.
  */
-export const db = new Index<Product>();
+export const db = new Index<ApiProductType>();
 
 // Example of adding a product to the index (uncomment and customize if needed)
 // try {
