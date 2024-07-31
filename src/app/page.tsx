@@ -1,13 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { ChevronDown, Filter } from "lucide-react";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { QueryResult } from "@upstash/vector";
+import { cn } from "@/lib/utils";
+import { Product } from "@/db";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 const SORT_OPTIONS = [
   { name: "None", value: "none" },
@@ -20,7 +24,23 @@ export default function Home() {
     sort: "none",
   });
 
-  console.log(filter);
+  const { data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const { data } = await axios.post<QueryResult<Product>[]>(
+        "http://localhost:3000/api/products",
+        {
+          filter: {
+            sort: filter.sort,
+          },
+        }
+      );
+
+      return data;
+    },
+  });
+
+  console.log( {products} );
 
   const updateFilter = (value: string) => {
     setFilter((prevState) => ({
