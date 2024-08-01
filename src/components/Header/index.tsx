@@ -5,7 +5,8 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components";
-
+import { ProductState } from "@/lib/validators/product-validator";
+import { Dispatch, SetStateAction } from "react";
 
 const SORT_OPTIONS = [
   { name: "None", value: "none" },
@@ -15,11 +16,11 @@ const SORT_OPTIONS = [
 
 interface Props {
   title: string;
-  updateFilter: (value: string) => void;
-  filter: FilterType;
+  setFilter: Dispatch<SetStateAction<ProductState>>;
+  filter: ProductState;
 }
 
-export const Header = ({ title, updateFilter, filter }: Props) => {
+export const Header = ({ title, setFilter, filter }: Props) => {
   return (
     <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900">
@@ -40,7 +41,6 @@ export const Header = ({ title, updateFilter, filter }: Props) => {
                   "text-gray-900 bg-gray-100": option.value === filter.sort,
                   "text-gray-500": option.value !== filter.sort,
                 })}
-                onClick={() => updateFilter(option.value)}
               >
                 {option.name}
               </button>
