@@ -16,3 +16,9 @@ export type PriceFilterType = {
     }
   ];
 };
+
+export type DebouncedFilter<T> = DebouncedFunc<
+  () => Promise<QueryObserverResult<QueryResult<T>[], Error>>
+>;
+
+export type SetStateActionType<T> = Dispatch<SetStateAction<T>>;

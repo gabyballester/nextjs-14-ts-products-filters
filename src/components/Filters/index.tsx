@@ -1,17 +1,19 @@
-import { Dispatch, SetStateAction } from "react";
-import { ProductState } from "@/lib/validators/product-validator";
+import { ApiProductType } from "@/db";
+import { ProductState } from "@/lib";
 import { Accordion } from "@/components";
 import { SubCategoryFilter } from "./SubCategoryFilter";
 import { ColorFilter } from "./ColorFilter";
 import { SizeFilter } from "./SizeFilter";
 import { PriceFilter } from "./PriceFilter";
+import { DebouncedFilter, SetStateActionType } from "@/types";
 
 interface Props {
   filter: ProductState;
-  setFilter: Dispatch<SetStateAction<ProductState>>;
+  setFilter: SetStateActionType<ProductState>;
+  debouncedSubmit: DebouncedFilter<ApiProductType>;
 }
 
-export const Filters = ({ filter, setFilter }: Props) => {
+export const Filters = ({ filter, setFilter, debouncedSubmit }: Props) => {
   const applyArrayFilter = ({
     category,
     value,
@@ -22,16 +24,18 @@ export const Filters = ({ filter, setFilter }: Props) => {
     const isFilterApplied = filter[category].includes(value as never);
 
     if (isFilterApplied) {
-      setFilter((prev) => ({
+      setFilter((prev: ProductState) => ({
         ...prev,
         [category]: prev[category].filter((v) => v !== value),
       }));
     } else {
-      setFilter((prev) => ({
+      setFilter((prev: ProductState) => ({
         ...prev,
         [category]: [...prev[category], value],
       }));
     }
+
+    debouncedSubmit();
   };
 
   return (
@@ -40,7 +44,11 @@ export const Filters = ({ filter, setFilter }: Props) => {
       <Accordion type="multiple" className="animate-none">
         <ColorFilter filter={filter} applyArrayFilter={applyArrayFilter} />
         <SizeFilter filter={filter} applyArrayFilter={applyArrayFilter} />
-        <PriceFilter filter={filter} setFilter={setFilter} />
+        <PriceFilter
+          filter={filter}
+          setFilter={setFilter}
+          debouncedSubmit={debouncedSubmit}
+        />
       </Accordion>
     </div>
   );

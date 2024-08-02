@@ -1,12 +1,19 @@
+import { ApiProductType } from "@/db";
+import { ProductState } from "@/lib";
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components";
-import { ProductState } from "@/lib/validators/product-validator";
-import { Dispatch, SetStateAction } from "react";
 import { DefinedPriceFilter } from "./DefinedPriceFilter";
 import { CustomPriceFilter } from "./CustomPriceFilter";
+import { DebouncedFilter, SetStateActionType } from "@/types";
+
+interface Props {
+  filter: ProductState;
+  setFilter: SetStateActionType<ProductState>;
+  debouncedSubmit: DebouncedFilter<ApiProductType>;
+}
 
 const PRICE_FILTERS = {
   id: "price",
@@ -25,12 +32,7 @@ const PRICE_FILTERS = {
   ],
 } as const;
 
-interface Props {
-  filter: ProductState;
-  setFilter: Dispatch<SetStateAction<ProductState>>;
-}
-
-export const PriceFilter = ({ filter, setFilter }: Props) => {
+export const PriceFilter = ({ filter, setFilter, debouncedSubmit }: Props) => {
   return (
     <AccordionItem value="price">
       <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
@@ -43,11 +45,13 @@ export const PriceFilter = ({ filter, setFilter }: Props) => {
             filter={filter}
             setFilter={setFilter}
             priceFilters={PRICE_FILTERS}
+            debouncedSubmit={debouncedSubmit}
           />
           <CustomPriceFilter
             filter={filter}
             setFilter={setFilter}
             priceFilters={PRICE_FILTERS}
+            debouncedSubmit={debouncedSubmit}
           />
         </ul>
       </AccordionContent>

@@ -1,17 +1,19 @@
-import { Dispatch, SetStateAction } from "react";
-import { ProductState } from "@/lib/validators/product-validator";
-import { PriceFilterType } from "@/types";
+import { ApiProductType } from "@/db";
+import { ProductState } from "@/lib";
+import { DebouncedFilter, PriceFilterType, SetStateActionType } from "@/types";
 
 interface Props {
   filter: ProductState;
   priceFilters: PriceFilterType;
-  setFilter: Dispatch<SetStateAction<ProductState>>;
+  setFilter: SetStateActionType<ProductState>;
+  debouncedSubmit: DebouncedFilter<ApiProductType>;
 }
 
 export const DefinedPriceFilter = ({
   filter,
   priceFilters,
   setFilter,
+  debouncedSubmit,
 }: Props) => {
   return priceFilters.options.map((option, optionIdx) => (
     <li key={option.label} className="flex items-center">
@@ -19,7 +21,7 @@ export const DefinedPriceFilter = ({
         type="radio"
         id={`price-${optionIdx}`}
         onChange={() => {
-          setFilter((prev) => ({
+          setFilter((prev: ProductState) => ({
             ...prev,
             price: {
               isCustom: false,
@@ -27,7 +29,7 @@ export const DefinedPriceFilter = ({
             },
           }));
 
-          // _debouncedSubmit();
+          debouncedSubmit();
         }}
         checked={
           !filter.price.isCustom &&

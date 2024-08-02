@@ -1,12 +1,11 @@
 import { ChevronDown, Filter } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, ProductState } from "@/lib";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components";
-import { ProductState } from "@/lib/validators/product-validator";
-import { Dispatch, SetStateAction } from "react";
+import { SetStateActionType } from "@/types";
 
 const SORT_OPTIONS = [
   { name: "None", value: "none" },
@@ -16,7 +15,7 @@ const SORT_OPTIONS = [
 
 interface Props {
   title: string;
-  setFilter: Dispatch<SetStateAction<ProductState>>;
+  setFilter: SetStateActionType<ProductState>;
   filter: ProductState;
 }
 

@@ -1,7 +1,6 @@
-import { ProductState } from "@/lib/validators/product-validator";
 import { useState } from "react";
-
-const DEFAULT_CUSTOM_PRICE = [0, 100] as [number, number];
+import { DEFAULT_CUSTOM_PRICE } from "@/components/Filters/CustomPriceFilter";
+import { ProductState } from "@/lib";
 
 export function useProductFilter() {
   const [filter, setFilter] = useState<ProductState>({

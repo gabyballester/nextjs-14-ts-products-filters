@@ -1,9 +1,9 @@
+import { ProductState } from "@/lib";
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components";
-import { ProductState } from "@/lib/validators/product-validator";
 
 interface Props {
   filter: ProductState;

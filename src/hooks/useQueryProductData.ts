@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { QueryResult } from "@upstash/vector";
-import { ProductState } from "@/lib/validators/product-validator";
+import { ProductState } from "@/lib";
 
 export function useQueryProductData<T>({ filter }: { filter: ProductState }) {
   return useQuery<QueryResult<T>[]>({
@@ -12,6 +12,9 @@ export function useQueryProductData<T>({ filter }: { filter: ProductState }) {
         {
           filter: {
             sort: filter.sort,
+            color: filter.color,
+            price: filter.price.range,
+            size: filter.size,
           },
         }
       );
