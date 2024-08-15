@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Product Filter App
+
+## Description
+
+This Tech Assessment demonstrates the use of Next.js to build a product filtering page based on various product properties.
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+
+2. Create a .env file from the sample
+
+```bash
+cp .env.sample .env
+```
+
+3. Create your online database account in <https://upstash.com/docs/introduction>
+
+4. Fill the .env data required
+
+```bash
+UPSTASH_VECTOR_REST_URL=""
+UPSTASH_VECTOR_REST_TOKEN=""`
+```
+
+5. Install the necessary dependencies: Before running the development server, make sure to install all project dependencies. You can do this with one of the following commands:
+
+```bash
+npm install
+```
+
+6. Run the development server: You can start the development server using one of the following commands:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Code Quality and Best Practices
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The platform ensures high code quality and follows best practices.
 
-## Learn More
+## Core libraries used
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js:** The primary framework used for this project.
+- **React:** Serving as the foundational UI library.
+- **TypeScript:** Integrating strong static typing and advanced features to enhance large-scale development and maintain code quality.
+- **Lodash (Debounce):** Utilized for implementing efficient input handling, preventing unnecessary function calls during rapid user input.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## UX/UI
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Tailwind CSS:** Employed for styling the application, providing a utility-first approach to building responsive and modern interfaces.
 
-## Deploy on Vercel
+## Database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**@upstash/vector:** This online service is used as the project's database, offering scalable and efficient data storage.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributions
+
+Contributions are welcome. If you would like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch `git checkout -b feature/new-feature`.
+3. Make your changes and add them to the stagging area `git add .`
+4. Commit changes `git commit -am 'Add new feature'`.
+5. Push your branch `bash git push origin feature/new-feature)`
+6. Open a Pull Request in order to merge your branch into develop.
+
+Thanks for helping :smirk:!!
