@@ -14,7 +14,7 @@ export default function Home() {
   });
 
   const onSubmit = () => refetch();
-  const handleDebouncedSubmit = debounce(onSubmit, 1000);
+  const handleDebouncedSubmit = debounce(onSubmit, 400);
   const debouncedSubmit: DebouncedFilter<ApiProductType> = useCallback(
     handleDebouncedSubmit,
     []
@@ -26,6 +26,7 @@ export default function Home() {
         title="High-quality cotton selection"
         setFilter={setFilter}
         filter={filter}
+        debouncedSubmit={debouncedSubmit}
       />
       <section className="pb-24 pt-6">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
