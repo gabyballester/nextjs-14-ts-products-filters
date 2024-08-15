@@ -1,4 +1,4 @@
-const ProductSkeleton = () => {
+export const ProductSkeleton = () => {
   return (
     <div className="relative animate-pulse">
       <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80">
@@ -11,5 +11,3 @@ const ProductSkeleton = () => {
     </div>
   );
 };
-
-export default ProductSkeleton;
