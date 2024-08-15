@@ -39,7 +39,7 @@ export const PriceFilter = ({ filter, setFilter, debouncedSubmit }: Props) => {
         <span className="font-medium text-gray-900">Price</span>
       </AccordionTrigger>
 
-      <AccordionContent className="pt-6 animate-none">
+      <AccordionContent className="pt-2 animate-none">
         <ul className="space-y-4">
           <DefinedPriceFilter
             filter={filter}

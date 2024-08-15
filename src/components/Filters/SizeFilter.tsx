@@ -33,7 +33,7 @@ export const SizeFilter = ({ applyArrayFilter, filter }: Props) => {
         <span className="font-medium text-gray-900">Size</span>
       </AccordionTrigger>
 
-      <AccordionContent className="pt-6 animate-none">
+      <AccordionContent className="pt-2 animate-none">
         <ul className="space-y-4">
           {SIZE_FILTERS.options.map((option, optionIdx) => (
             <li key={option.value} className="flex items-center">
